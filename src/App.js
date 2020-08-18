@@ -7,7 +7,8 @@ class App extends Component {
         super()
         this.state = {
             loading: false,
-            pokemon: [],
+            pokemonCharacters: [],
+            pokemonDetails: [],
             offset: 0,
             load: 1048
         }
@@ -21,31 +22,41 @@ class App extends Component {
         fetch(url)
             .then(response => response.json())
             .then(data => {
-                if (data)
-                    console.log(data)
-                    this.setState({
-                        loading: false,
-                        pokemon: data.pokemon
-                    });
-                },
-                (error) => {
-                    this.setState({
-                        loading: false,
-                        error
-                    });
+                if (data) {
+                    this.setState({pokemonCharacters: data.results}, () => {
+                        this.state.pokemonCharacters.map(pokemon => {
+                            fetch(pokemon.url)
+                                .then(response => response.json())
+                                .then(data => {
+                                    if (data) {
+                                        let temp = this.state.pokemonDetails
+                                        temp.push(data)
+                                        this.setState({pokemonDetails: temp})
+                                    }
+                                })
+                                .catch(console.log)
+                        })
+                    })
                 }
-            )
+            })
+            .catch(console.log)
     }
 
 
+
+
+
     render() {
-        const text = this.state.loading ? "Loading..." : this.state.pokemon
-        const data = this.state.pokemon
+
+        const {pokemonDetails} = this.state;
+
+        const pokemonList = pokemonDetails.map((pokemon, index) => {
+            return (<PokemonCard pokemon={pokemon}/>);
+        });
         return (
             <div>
+                {pokemonList}
                 <PokemonCard />
-                <p>{text}</p>
-                <p>{data}</p>
             </div>
         )
     }

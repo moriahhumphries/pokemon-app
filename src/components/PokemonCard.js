@@ -1,8 +1,8 @@
 import React from "react";
 
-const PokemonCard = () => {
+const PokemonCard = ({pokemon}) => {
     return (
-        <div className="row text-center ml-1">
+        <div className="row text-center ml-1" key={pokemon.id}>
             <div className="col s12 m4 size">
                     <div className="card">
                         <div className="card-image">
@@ -19,7 +19,7 @@ const PokemonCard = () => {
                         </div>
                         <div className="card-content">
                             <span className="card-title center-align">Pokemon Name</span>
-                            <p>Name</p>
+                            <p>{pokemon.name}</p>
                             <p></p>
                         </div>
                     </div>
