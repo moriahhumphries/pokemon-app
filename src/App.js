@@ -8,18 +8,21 @@ class App extends Component {
         this.state = {
             loading: false,
             pokemon: [],
-
+            offset: 0,
+            load: 1048
         }
         // Bind syntax
         // this.handleChange = this.handleChange.bind(this)
     }
 
     componentDidMount() {
+        const url = "https://pokeapi.co/api/v2/pokemon?offset=" + this.state.offset + "&limit=" + this.state.load;
         this.setState({loading: true})
-        fetch("https://pokeapi.co/api/v2/pokemon/")
+        fetch(url)
             .then(response => response.json())
             .then(data => {
-                    console.log(data.results[1])
+                if (data)
+                    console.log(data)
                     this.setState({
                         loading: false,
                         pokemon: data.pokemon
