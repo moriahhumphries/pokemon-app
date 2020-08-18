@@ -10,7 +10,7 @@ const PokemonCard = ({pokemon}) => {
                             <form>
                                 <button
                                     className="btn btn-floating halfway-fab waves-effect waves-light red">
-                                    <i className="material-icons">favorite</i>
+                                    <i className="fas fa-heart"></i>
                                 </button>
                             </form>
 
