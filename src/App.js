@@ -2,6 +2,7 @@ import React from 'react';
 import {Component} from 'react';
 import './App.css';
 import PokemonCard from './components/PokemonCard';
+import Header from "./components/Header";
 
 class App extends Component {
     constructor() {
@@ -19,6 +20,7 @@ class App extends Component {
     loadNext() {
         return this.state.offset + this.state.load;
     }
+
     handleShowMoreClick(event) {
         const nextPokemon = this.loadNext();
         this.setState({offset: nextPokemon}, () => {
@@ -26,11 +28,11 @@ class App extends Component {
         })
     }
 
-    componentDidMount () {
+    componentDidMount() {
         this.showNextSet();
     }
 
-    showNextSet () {
+    showNextSet() {
         let url = "https://pokeapi.co/api/v2/pokemon?offset=" + this.state.offset + "&limit=" + this.state.load;
         this.setState({isLoading: true})
         fetch(url)
@@ -65,25 +67,36 @@ class App extends Component {
     render() {
 
         const {pokemonInfo} = this.state;
-
-
         const pokemonList = pokemonInfo.map((pokemon) => {
             return (<PokemonCard pokemon={pokemon} key={pokemon.id}/>);
         });
 
-
-        if (this.state.pokemons.length > 0) {
-            return (
-                <div className="container">
-                    {pokemonList}
-                    <button style={{"display":"block", "backgroundColor" : "red", "fontWeight" : "bold"}} type="button" className="btn" onClick={this.handleShowMoreClick}>Show More</button>
-
-                </div>
-            );
-        }
         return (
             <div>
-            <h1>Loading....</h1>
+                <Header />
+                <div className="container center-align" style={{"margin": "auto"}}>
+                    {pokemonList}
+                    <div>
+                        <button style={{
+                            "display": "inline-block",
+                            "backgroundColor": "red",
+                            "fontWeight": "bold",
+                            "marginRight": "10px"
+                        }}
+                                type="button" className="btn" onClick={this.handleShowMoreClick}>Show More
+                        </button>
+                        <a href="#top">
+                            <button style={{
+                                "display": "inline-block",
+                                "backgroundColor": "red",
+                                "fontWeight": "bold",
+                                "color": "white"
+                            }} type="button" className="btn"> Return to top
+                            </button>
+                        </a>
+                    </div>
+
+                </div>
             </div>
         )
     }
