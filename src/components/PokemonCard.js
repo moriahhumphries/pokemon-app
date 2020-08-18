@@ -2,25 +2,21 @@ import React from "react";
 
 const PokemonCard = ({pokemon}) => {
     return (
-        <div className="row text-center ml-1" key={pokemon.id}>
-            <div className="col s12 m4 size">
+        <div className="row text-center" style={{"display": "inline-block", "margin" : "0"}} key={pokemon.id}>
+            <div className="col s12" style={{"width" : "15vw"}}>
                     <div className="card">
                         <div className="card-image">
-                            <img src="../pokeball.png"
-                            alt="pokemon"
-                                />
+                            <img src={pokemon.sprites['front_default']} />
                             <form>
                                 <button
-                                    className="button-style btn btn-floating halfway-fab waves-effect waves-light red">
+                                    className="btn btn-floating halfway-fab waves-effect waves-light red">
                                     <i className="material-icons">favorite</i>
                                 </button>
                             </form>
 
                         </div>
                         <div className="card-content">
-                            <span className="card-title center-align">Pokemon Name</span>
-                            <p>{pokemon.name}</p>
-                            <p></p>
+                            <span className="card-title center-align">{pokemon.name}</span>
                         </div>
                     </div>
             </div>
