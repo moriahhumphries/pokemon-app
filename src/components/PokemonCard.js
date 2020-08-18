@@ -3,7 +3,7 @@ import React from "react";
 const PokemonCard = ({pokemon}) => {
     return (
         <div className="row text-center" style={{"display": "inline-block", "margin" : "0"}} key={pokemon.id}>
-            <div className="col s12" style={{"width" : "15vw"}}>
+            <div className="col s1 m4 l1" style={{"width" : "20vw"}}>
                     <div className="card">
                         <div className="card-image">
                             <img src={pokemon.sprites['front_default']} />
@@ -16,7 +16,7 @@ const PokemonCard = ({pokemon}) => {
 
                         </div>
                         <div className="card-content">
-                            <span className="card-title center-align">{pokemon.name}</span>
+                            <span className="card-title center-align" style={{"fontSize": "1.75vw"}}>{pokemon.name}</span>
                         </div>
                     </div>
             </div>

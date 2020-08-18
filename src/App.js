@@ -20,9 +20,9 @@ class App extends Component {
         return this.state.offset + this.state.load;
     }
     handleShowMoreClick(event) {
-        const nextPokemon = this.showNext();
+        const nextPokemon = this.loadNext();
         this.setState({offset: nextPokemon}, () => {
-            this.showMore();
+            this.showNextSet();
         })
     }
 
@@ -67,16 +67,16 @@ class App extends Component {
         const {pokemonInfo} = this.state;
 
 
-        const pokemonList = pokemonInfo.map((pokemon, index) => {
+        const pokemonList = pokemonInfo.map((pokemon) => {
             return (<PokemonCard pokemon={pokemon} key={pokemon.id}/>);
         });
 
 
         if (this.state.pokemons.length > 0) {
             return (
-                <div>
+                <div className="container">
                     {pokemonList}
-                    <button style={{"display":"block"}} type="button" className="btn" onClick={this.handleShowMore}>Show More</button>
+                    <button style={{"display":"block", "backgroundColor" : "red", "fontWeight" : "bold"}} type="button" className="btn" onClick={this.handleShowMoreClick}>Show More</button>
 
                 </div>
             );
