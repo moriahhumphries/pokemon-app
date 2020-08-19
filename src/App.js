@@ -101,9 +101,9 @@ class App extends Component {
 
 
     render() {
-        const pokemonList = this.state.pokemonInfo.map((pokemon, index) => {
-            return (<PokemonCard pokemon={pokemon} key={pokemon.id}/>);
-        });
+        // const pokemonList = this.state.pokemonInfo.map((pokemon, index) => {
+        //     return (<PokemonCard pokemon={pokemon} key={pokemon.id}/>);
+        // });
 
 
         return (
@@ -111,8 +111,9 @@ class App extends Component {
                 <Header/>
                 <SearchForm handleSearchChange={this.handleSearchChange}
                             data={this.state}/>
+                <PokemonCard pokemon={this.state.pokemonInfo} />
                 <div className="center-align" style={{"margin": "auto"}}>
-                    {pokemonList}
+                    {/*{pokemonList}*/}
                     <PageButtons handleShowMoreClick={this.handleShowMoreClick}
                                  data={this.state}/>
                 </div>
