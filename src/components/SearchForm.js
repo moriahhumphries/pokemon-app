@@ -6,11 +6,12 @@ const SearchForm = (props) => {
 
     <form>
         <input type="text"
-               // value={props.data.pokemonSearch}
+               value={props.data.pokemonSearch}
                name="pokemonSearch"
                placeholder="Search Pokemon by Name"
-               // onChange={props.handleSearch}
+               onChange={props.handleSearchChange}
         />
+        <h1>You Searched: {props.data.pokemonSearch}</h1>
         <br/>
         <button style={{
             "display": "inline-block",

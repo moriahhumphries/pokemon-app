@@ -18,6 +18,12 @@ class App extends Component {
             pokemonSearch: []
         }
         this.handleShowMoreClick = this.handleShowMoreClick.bind(this)
+        this.handleSearchChange = this.handleSearchChange.bind(this)
+    }
+
+    handleSearchChange(event) {
+        const {name, value} = event.target
+        this.setState({[name]: value})
     }
 
     loadNext() {
@@ -80,7 +86,9 @@ class App extends Component {
         return (
             <div>
                 <Header />
-                <SearchForm />
+                <SearchForm handleSearchChange={this.handleSearchChange}
+                data={this.state}/>
+
                 <div className="container center-align" style={{"margin": "auto"}}>
                     {pokemonList}
                 <PageButtons handleShowMoreClick={this.handleShowMoreClick}
