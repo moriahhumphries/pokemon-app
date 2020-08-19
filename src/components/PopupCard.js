@@ -1,6 +1,6 @@
 import React from "react";
 
-const PokemonCard = ({pokemon}) => {
+const PopupCard = ({pokemon}) => {
     return (
         <div className="row text-center" style={{"display": "inline-block", "margin": "0"}} key={pokemon.id}>
             <div className="col 12" style={{"width": "15vw"}}>
@@ -19,7 +19,7 @@ const PokemonCard = ({pokemon}) => {
                     <div className="card-content">
                         <a href="#">
                             <span className="card-title center-align"
-                                   style={{"fontSize": "1.75vw"}}>{pokemon.name}</span>
+                                  style={{"fontSize": "1.75vw"}}>{pokemon.name}</span>
                         </a>
                         <span className="center align">Height: {pokemon.height}</span>
                         <br/>
@@ -27,7 +27,7 @@ const PokemonCard = ({pokemon}) => {
                         <br/>
                         <span className="center align">Weight: {pokemon.weight}</span>
                         <br />
-                        <span className="center align"><a href={`https://pokeapi.co/api/v2/pokemon/${pokemon.id}`}>Link</a></span>
+                        <span className="center align">Abilities: </span>
                     </div>
                 </div>
             </div>
@@ -35,4 +35,4 @@ const PokemonCard = ({pokemon}) => {
     )
 }
 
-export default PokemonCard;
+export default PopupCard;

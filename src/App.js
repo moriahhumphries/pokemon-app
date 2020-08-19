@@ -5,6 +5,7 @@ import PokemonCard from './components/PokemonCard';
 import Header from "./components/Header";
 import SearchForm from "./components/SearchForm";
 import PageButtons from "./components/PageButtons";
+import PopupCard from "./components/PopupCard";
 
 class App extends Component {
     constructor() {
@@ -69,6 +70,7 @@ class App extends Component {
             .then(response => response.json())
             .then(data => {
                 console.log(data.results[0].url)
+
                 if (data) {
                     this.setState({
                         pokemons: data.results
@@ -98,19 +100,17 @@ class App extends Component {
     }
 
 
-
     render() {
-
         const pokemonList = this.state.pokemonInfo.map((pokemon, index) => {
-            return (<PokemonCard pokemon={pokemon} key={pokemon.id} onClick={this.handleLinkClick}/>);
+            return (<PokemonCard pokemon={pokemon} key={pokemon.id}/>);
         });
+
 
         return (
             <div>
                 <Header/>
                 <SearchForm handleSearchChange={this.handleSearchChange}
                             data={this.state}/>
-
                 <div className="container center-align" style={{"margin": "auto"}}>
                     {pokemonList}
                     <PageButtons handleShowMoreClick={this.handleShowMoreClick}
