@@ -21,13 +21,13 @@ const PageButtons = (props) => {
                         "fontWeight": "bold",
                         "color": "white",
                         "position": "fixed",
-                        "right": "50px",
-                        "bottom": "30px",
-                        "height": "100px",
-                        "width": "100px",
+                        "right": "15px",
+                        "bottom": "10px",
+                        "height": "80px",
+                        "width": "80px",
                         "borderRadius": "50%"
                     }} type="button" className="btn">
-                        <i className="fas fa-arrow-circle-up" style={{"fontSize": "50px", "marginTop": "22%"}}></i>
+                        <i className="fas fa-arrow-circle-up" style={{"fontSize": "50px", "marginTop": "24%"}}></i>
                     </button>
                 </label>
             </a>

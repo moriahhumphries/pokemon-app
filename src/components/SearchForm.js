@@ -27,7 +27,7 @@ const SearchForm = (props) => {
         }}
                 type="button" className="btn">Show Favorites <i className="fas fa-heart"></i>
         </button>
-        <h3>You Searched: {props.data.pokemonSearch}</h3>
+        <h3 style={{"fontSize": "1.5em"}}>You Searched: {props.data.pokemonSearch}</h3>
         <br/>
 
     </form>

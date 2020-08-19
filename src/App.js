@@ -111,7 +111,7 @@ class App extends Component {
                 <Header/>
                 <SearchForm handleSearchChange={this.handleSearchChange}
                             data={this.state}/>
-                <div className="container center-align" style={{"margin": "auto"}}>
+                <div className="center-align" style={{"margin": "auto"}}>
                     {pokemonList}
                     <PageButtons handleShowMoreClick={this.handleShowMoreClick}
                                  data={this.state}/>
