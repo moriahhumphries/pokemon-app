@@ -12,18 +12,32 @@ class App extends Component {
         this.state = {
             isLoading: false,
             pokemons: [],
+            noTouchPokemons:[],
             pokemonInfo: [],
             offset: 0,
-            load: 20,
-            pokemonSearch: []
+            load: 151,
+            pokemonSearch: [],
+            timeOut:false
         }
         this.handleShowMoreClick = this.handleShowMoreClick.bind(this)
         this.handleSearchChange = this.handleSearchChange.bind(this)
     }
 
     handleSearchChange(event) {
-        const {name, value} = event.target
-        this.setState({[name]: value})
+
+
+        let keyword = event.target.value;
+        this.setState({pokemonSearch:keyword})
+
+        let pokemonHolder = this.state.pokemonInfo.filter(ele => ele.name === event.target.value)
+
+        if(pokemonHolder.length > 0){
+            this.setState({
+                pokemonInfo:pokemonHolder
+            })
+        }else{
+            this.setState({pokemonInfo:this.state.noTouchPokemons})
+        }
     }
 
     loadNext() {
@@ -47,7 +61,7 @@ class App extends Component {
         fetch(url)
             .then(response => response.json())
             .then(data => {
-                console.log(data)
+                console.log(data.results[0].url)
                 if (data) {
                     this.setState({
                         pokemons: data.results
@@ -61,7 +75,8 @@ class App extends Component {
                                         let temp = this.state.pokemonInfo
                                         temp.push(data)
                                         this.setState({
-                                            pokemonInfo: temp
+                                            pokemonInfo: temp,
+                                            noTouchPokemons:temp
                                         })
                                     }
                                 })
@@ -77,9 +92,7 @@ class App extends Component {
 
     render() {
 
-
-        const {pokemonInfo} = this.state;
-        const pokemonList = pokemonInfo.map((pokemon) => {
+        const pokemonList = this.state.pokemonInfo.map((pokemon) => {
             return (<PokemonCard pokemon={pokemon} key={pokemon.id}/>);
         });
 
@@ -100,3 +113,5 @@ class App extends Component {
 }
 
 export default App;
+// Full Pokemon Object
+// console.log(data.results[0].url)

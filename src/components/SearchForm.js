@@ -12,7 +12,10 @@ const SearchForm = (props) => {
                onChange={props.handleSearchChange}
                style={{
                    "display": "inline-block",
-                   "width" : "50vw"
+                   "width" : "50vw",
+                   "backgroundColor" : "white",
+                   "color": "black",
+                   "paddingLeft" : "10px"
                }}
         />
         <button style={{
@@ -23,7 +26,7 @@ const SearchForm = (props) => {
         }}
                 type="button" className="btn">Show Favorites <i className="fas fa-heart"></i>
         </button>
-        <h5>You Searched: {props.data.pokemonSearch}</h5>
+        <h3>You Searched: {props.data.pokemonSearch}</h3>
         <br/>
 
     </form>
