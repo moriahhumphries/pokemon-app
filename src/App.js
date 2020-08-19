@@ -12,13 +12,13 @@ class App extends Component {
         this.state = {
             isLoading: false,
             pokemons: [],
-            noTouchPokemons:[],
+            noTouchPokemons: [],
             pokemonInfo: [],
             offset: 0,
             initialLoad: 151,
             loadMore: 20,
             pokemonSearch: [],
-            timeOut:false
+            timeOut: false
         }
         this.handleShowMoreClick = this.handleShowMoreClick.bind(this)
         this.handleSearchChange = this.handleSearchChange.bind(this)
@@ -28,19 +28,20 @@ class App extends Component {
 
 
         let keyword = event.target.value;
+        let keywordLower = keyword.toLowerCase()
         this.setState({
             pokemonSearch: keyword,
         });
 
 
-        let pokemonHolder = this.state.pokemonInfo.filter(ele => ele.name === event.target.value);
+        let pokemonHolder = this.state.pokemonInfo.filter(ele => ele.name === keywordLower);
 
-        if (pokemonHolder.length > 0){
+        if (pokemonHolder.length > 0) {
             this.setState({
                 pokemonInfo: pokemonHolder
             });
         } else {
-            this.setState({pokemonInfo:this.state.noTouchPokemons});
+            this.setState({pokemonInfo: this.state.noTouchPokemons});
         }
     }
 
@@ -80,6 +81,7 @@ class App extends Component {
                                         let temp = this.state.pokemonInfo
                                         temp.push(data)
                                         this.setState({
+                                            isLoading: false,
                                             pokemonInfo: temp,
                                             noTouchPokemons: temp
                                         });
@@ -103,14 +105,14 @@ class App extends Component {
 
         return (
             <div>
-                <Header />
+                <Header/>
                 <SearchForm handleSearchChange={this.handleSearchChange}
-                data={this.state}/>
+                            data={this.state}/>
 
                 <div className="container center-align" style={{"margin": "auto"}}>
                     {pokemonList}
-                <PageButtons handleShowMoreClick={this.handleShowMoreClick}
-                data={this.state}/>
+                    <PageButtons handleShowMoreClick={this.handleShowMoreClick}
+                                 data={this.state}/>
                 </div>
             </div>
         )
