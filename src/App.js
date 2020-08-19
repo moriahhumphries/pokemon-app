@@ -3,6 +3,8 @@ import {Component} from 'react';
 import './App.css';
 import PokemonCard from './components/PokemonCard';
 import Header from "./components/Header";
+import SearchForm from "./components/SearchForm";
+import PageButtons from "./components/PageButtons";
 
 class App extends Component {
     constructor() {
@@ -12,7 +14,8 @@ class App extends Component {
             pokemons: [],
             pokemonInfo: [],
             offset: 0,
-            load: 20
+            load: 20,
+            pokemonSearch: []
         }
         this.handleShowMoreClick = this.handleShowMoreClick.bind(this)
     }
@@ -38,9 +41,11 @@ class App extends Component {
         fetch(url)
             .then(response => response.json())
             .then(data => {
+                console.log(data)
                 if (data) {
                     this.setState({
                         pokemons: data.results
+
                     }, () => {
                         this.state.pokemons.map(pokemon => {
                             fetch(pokemon.url)
@@ -66,6 +71,7 @@ class App extends Component {
 
     render() {
 
+
         const {pokemonInfo} = this.state;
         const pokemonList = pokemonInfo.map((pokemon) => {
             return (<PokemonCard pokemon={pokemon} key={pokemon.id}/>);
@@ -74,28 +80,11 @@ class App extends Component {
         return (
             <div>
                 <Header />
+                <SearchForm />
                 <div className="container center-align" style={{"margin": "auto"}}>
                     {pokemonList}
-                    <div>
-                        <button style={{
-                            "display": "inline-block",
-                            "backgroundColor": "red",
-                            "fontWeight": "bold",
-                            "marginRight": "10px"
-                        }}
-                                type="button" className="btn" onClick={this.handleShowMoreClick}>Show More
-                        </button>
-                        <a href="#top">
-                            <button style={{
-                                "display": "inline-block",
-                                "backgroundColor": "red",
-                                "fontWeight": "bold",
-                                "color": "white"
-                            }} type="button" className="btn"> Return to top
-                            </button>
-                        </a>
-                    </div>
-
+                <PageButtons handleShowMoreClick={this.handleShowMoreClick}
+                data={this.state}/>
                 </div>
             </div>
         )
