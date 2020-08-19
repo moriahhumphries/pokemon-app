@@ -11,7 +11,6 @@ const PokemonCard = ({pokemon}) => {
                             <form>
                                 <button
                                     className="btn btn-floating halfway-fab waves-effect waves-light red">
-
                                     <i className="fas fa-heart"></i>
                                 </button>
                             </form>
@@ -20,6 +19,8 @@ const PokemonCard = ({pokemon}) => {
                         <div className="card-content">
                             <span className="card-title center-align" style={{"fontSize": "1.75vw"}}>{pokemon.name}</span>
                             <span className="center align">Height: {pokemon.height}</span>
+                            <br />
+                            <span className="center align">ID: {pokemon.id}</span>
                             <br />
                             <span className="center align">Weight: {pokemon.weight}</span>
                         </div>

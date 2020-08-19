@@ -27,16 +27,19 @@ class App extends Component {
 
 
         let keyword = event.target.value;
-        this.setState({pokemonSearch:keyword})
+        this.setState({
+            pokemonSearch: keyword,
+        });
 
-        let pokemonHolder = this.state.pokemonInfo.filter(ele => ele.name === event.target.value)
 
-        if(pokemonHolder.length > 0){
+        let pokemonHolder = this.state.pokemonInfo.filter(ele => ele.name === event.target.value);
+
+        if (pokemonHolder.length > 0){
             this.setState({
-                pokemonInfo:pokemonHolder
-            })
-        }else{
-            this.setState({pokemonInfo:this.state.noTouchPokemons})
+                pokemonInfo: pokemonHolder
+            });
+        } else {
+            this.setState({pokemonInfo:this.state.noTouchPokemons});
         }
     }
 
