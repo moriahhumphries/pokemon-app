@@ -18,6 +18,7 @@ const SearchForm = (props) => {
                    "paddingLeft" : "10px"
                }}
         />
+        <br />
         <button style={{
             "display": "inline-block",
             "backgroundColor": "red",
