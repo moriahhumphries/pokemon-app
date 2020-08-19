@@ -15,7 +15,8 @@ class App extends Component {
             noTouchPokemons:[],
             pokemonInfo: [],
             offset: 0,
-            load: 151,
+            initialLoad: 151,
+            loadMore: 20,
             pokemonSearch: [],
             timeOut:false
         }
@@ -43,8 +44,9 @@ class App extends Component {
         }
     }
 
+
     loadNext() {
-        return this.state.offset + this.state.load;
+        return this.state.offset + this.state.initialLoad;
     }
 
     handleShowMoreClick(event) {
@@ -59,7 +61,7 @@ class App extends Component {
     }
 
     showNextSet() {
-        let url = "https://pokeapi.co/api/v2/pokemon?offset=" + this.state.offset + "&limit=" + this.state.load;
+        let url = "https://pokeapi.co/api/v2/pokemon?offset=" + this.state.offset + "&limit=" + this.state.initialLoad;
         this.setState({isLoading: true})
         fetch(url)
             .then(response => response.json())
@@ -79,8 +81,8 @@ class App extends Component {
                                         temp.push(data)
                                         this.setState({
                                             pokemonInfo: temp,
-                                            noTouchPokemons:temp
-                                        })
+                                            noTouchPokemons: temp
+                                        });
                                     }
                                 })
                                 .catch(console.log)
