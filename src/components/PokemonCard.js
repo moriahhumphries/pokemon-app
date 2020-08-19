@@ -17,7 +17,7 @@ const PokemonCard = ({pokemon}) => {
 
                     </div>
                     <div className="card-content">
-                        <a href="https://pokeapi.co/api/v2/pokemon/" >
+                        <a href="#">
                             <span className="card-title center-align"
                                    style={{"fontSize": "1.75vw"}}>{pokemon.name}</span>
                         </a>
@@ -26,6 +26,8 @@ const PokemonCard = ({pokemon}) => {
                         <span className="center align">ID: {pokemon.id}</span>
                         <br/>
                         <span className="center align">Weight: {pokemon.weight}</span>
+                        <br />
+                        <span className="center align"><a href={`https://pokeapi.co/api/v2/pokemon/${pokemon.id}`}>Link</a></span>
                     </div>
                 </div>
             </div>

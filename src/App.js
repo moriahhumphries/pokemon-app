@@ -18,14 +18,15 @@ class App extends Component {
             initialLoad: 151,
             loadMore: 20,
             pokemonSearch: [],
-            timeOut: false
+            timeOut: false,
+            pokemonUrl: "https://pokeapi.co/api/v2/pokemon/",
+            pokemonID: 0
         }
         this.handleShowMoreClick = this.handleShowMoreClick.bind(this)
         this.handleSearchChange = this.handleSearchChange.bind(this)
     }
 
     handleSearchChange(event) {
-
 
         let keyword = event.target.value;
         let keywordLower = keyword.toLowerCase()
@@ -97,10 +98,11 @@ class App extends Component {
     }
 
 
+
     render() {
 
-        const pokemonList = this.state.pokemonInfo.map((pokemon) => {
-            return (<PokemonCard pokemon={pokemon} key={pokemon.id}/>);
+        const pokemonList = this.state.pokemonInfo.map((pokemon, index) => {
+            return (<PokemonCard pokemon={pokemon} key={pokemon.id} onClick={this.handleLinkClick}/>);
         });
 
         return (
