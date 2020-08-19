@@ -23,7 +23,7 @@ const SearchForm = (props) => {
             "display": "inline-block",
             "backgroundColor": "red",
             "fontWeight": "bold",
-            "marginLeft": "10px",
+            "marginTop": "10px"
         }}
                 type="button" className="btn">Show Favorites <i className="fas fa-heart"></i>
         </button>
