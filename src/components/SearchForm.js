@@ -4,24 +4,28 @@ const SearchForm = (props) => {
 
     return (
 
-    <form>
+    <form className="center-align">
         <input type="text"
                value={props.data.pokemonSearch}
                name="pokemonSearch"
-               placeholder="Search Pokemon by Name"
+               placeholder="Search Pokemon"
                onChange={props.handleSearchChange}
+               style={{
+                   "display": "inline-block",
+                   "width" : "50vw"
+               }}
         />
-        <h1>You Searched: {props.data.pokemonSearch}</h1>
-        <br/>
         <button style={{
             "display": "inline-block",
             "backgroundColor": "red",
             "fontWeight": "bold",
-            "marginRight": "10px",
-            "marginBottom" : "20px"
+            "marginLeft": "10px",
         }}
                 type="button" className="btn">Show Favorites <i className="fas fa-heart"></i>
         </button>
+        <h5>You Searched: {props.data.pokemonSearch}</h5>
+        <br/>
+
     </form>
     )
 }
