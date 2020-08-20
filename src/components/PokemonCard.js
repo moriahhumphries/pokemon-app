@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from "react";
 import Modal from 'react-modal'
+import './../App.css';
 
 Modal.setAppElement('#root')
 const customStyles = {
@@ -42,11 +43,11 @@ function PokemonCard({pokemon}) {
 
     let newPokemon = pokemon.map((ele, ind) => {
             return (
-                    <div className="card col s12 m3 l2" style={{"margin": "5px", "padding": "0"}} key={ind}>
+                    <div className="card col s12 m2 l2 pokemon-card" style={{"margin": "5px", "padding": "0"}} key={ind}>
                         <div className="card-image">
                             <img src={ele.sprites.front_default} alt="pokemon"/>
 
-                            <button className="btn-floating halfway-fab waves-effect waves-light red"
+                            <button className="button btn-floating halfway-fab waves-effect waves-light red"
                                     style={{"zIndex": "0"}}
                                     onClick={() => saveFavoritePokemon(ele)}>
                                 <i className="fas fa-heart"/>
@@ -62,8 +63,8 @@ function PokemonCard({pokemon}) {
 
                             <span className="center align">ID: {ind + 1}</span>
                             <br/>
-                            <button className="btn" style={{"backgroundColor": "red", "fontWeight": "bold"}}
-                                    onClick={() => openModal(ele)}>View Details
+                            <button className="btn button" style={{"backgroundColor": "red", "fontWeight": "bold", "marginTop": "5px"}}
+                                    onClick={() => openModal(ele)}>Details
                             </button>
                             {/*<span className="center align"><a*/}
                             {/*    href={`https://pokeapi.co/api/v2/pokemon/${ele.id}`}>Link</a></span>*/}

@@ -1,4 +1,5 @@
 import React from 'react';
+import './../App.css';
 
 const PageButtons = (props) => {
 
@@ -11,7 +12,7 @@ const PageButtons = (props) => {
                 "marginLeft": "5px",
                 "marginBottom": "20px"
             }}
-                    type="button" className="btn" onClick={props.handleShowMoreClick}>Show More
+                    type="button" className="btn button" onClick={props.handleShowMoreClick}>Show More
             </button>
             <a href="#top">
                 <label>
