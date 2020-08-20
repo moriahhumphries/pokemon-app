@@ -9,7 +9,8 @@ const customStyles = {
         right: 'auto',
         bottom: 'auto',
         marginRight: '-50%',
-        transform: 'translate(-50%, -50%)'
+        transform: 'translate(-50%, -50%)',
+        zIndex: '1000'
     }
 };
 
@@ -42,7 +43,7 @@ function PokemonCard({pokemon}) {
                     <div className="card-image">
                         <img src={ele.sprites.front_default} alt="pokemon"/>
 
-                        <button className="btn-floating halfway-fab waves-effect waves-light red"
+                        <button className="btn-floating halfway-fab waves-effect waves-light red" style={{"zIndex": "0"}}
                                 onClick={() => saveFavoritePokemon(ele)}>
                             <i className="fas fa-heart"/>
                         </button>
@@ -94,8 +95,8 @@ function PokemonCard({pokemon}) {
                     <span className="center align">Weight: {pokeModal ? pokeModal.weight : ""}</span>
                     <br/>
                     <br/>
+                    <button className="btn" style={{"backgroundColor": "red", "fontWeight": "bold", "color": "white"}} onClick={closeModal}>Close</button>
                 </div>
-                <button onClick={closeModal}>Close</button>
             </Modal>
 
             {newPokemon}
