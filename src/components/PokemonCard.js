@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import Modal from 'react-modal'
 
 Modal.setAppElement('#root')
@@ -14,29 +14,37 @@ const customStyles = {
 };
 
 function PokemonCard({ pokemon }) {
-    const [modalIsOpen, setIsOpen] = React.useState(false)
-    const [pokeModal, setPokeModal] = React.useState(null)
-
-    function openModal(pokeModalFromLoop) {
+    const [modalIsOpen, setIsOpen] = useState(false)
+    const [pokeModal, setPokeModal] = useState(null)
+    let [listOfFavorites, setListOfFavorites] = useState([])
+    let openModal = (pokeModalFromLoop)=>{
         setPokeModal(pokeModalFromLoop)
         console.log(pokeModalFromLoop)
         setIsOpen(true);
     }
 
-    function closeModal() {
+    let closeModal = ()=> {
         setIsOpen(false);
     }
-
+    useEffect(()=>{
+        const savedPokemon = JSON.parse(localStorage.getItem('favoritePokemon'))
+        if(savedPokemon)setListOfFavorites(savedPokemon)
+    },[])
+    useEffect(()=>{
+        localStorage.setItem('favoritePokemon',JSON.stringify(listOfFavorites))
+    }, [listOfFavorites])
+    let saveFavoritePokemon = (favPokemon)=>{
+        setListOfFavorites([favPokemon.name, ...listOfFavorites])
+    }
     let newPokemon = pokemon.map((ele, ind) => {
         return (
             <div className="card col s12 m3 l3" style={{ "margin": "50px" }} key={ind}>
                 <div className="card-image">
                     <img src={ele.sprites.front_default} alt="pokemon" />
-                    <form>
-                        <button className="btn red">
-                            <i className="fas fa-heart"></i>
+
+                        <button className="btn red" onClick={()=>saveFavoritePokemon(ele)}>
+                            <i className="fas fa-heart"/>
                         </button>
-                    </form>
                 </div>
 
                 <button onClick={() => openModal(ele)}>View Pokemon</button>
