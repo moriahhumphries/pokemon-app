@@ -11,7 +11,7 @@ class App extends Component {
         super();
         this.state = {
             isLoading: false,
-            userInput: '',
+            userInput: "",
             pokemons: [],
             noTouchPokemons: [],
             pokemonInfo: [],
@@ -103,7 +103,7 @@ class App extends Component {
     render() {
 
         return (
-            <div>
+            <div className="center-align">
                 <Header/>
                 <SearchForm handleSearchChange={this.handleSearchChange}
                             data={this.state}/>

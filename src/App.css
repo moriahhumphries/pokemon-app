@@ -16,42 +16,57 @@ body {
 /*  height: 100vh;*/
 /*}*/
 
-.App {
 
-  text-align: center;
+@keyframes moveInTop {
+  0% {
+    opacity: 0;
+    transform: translateY(-50px);
+  }
+
+  50% {
+    transform: translateY(10px);
+  }
+
+  80% {
+  transform: translateY(-20px);
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+  100% {
+    opacity: 1;
+    transform: translate(0);
   }
 }
 
-.App-header {
-  background-color: white;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: black;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+@keyframes moveInRight {
+  0% {
+    opacity: 0;
+    transform: translateX(100px);
   }
-  to {
-    transform: rotate(360deg);
+
+  50% {
+    transform: translateX(-10px);
+  }
+
+  80% {
+    transform: translateX(10px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translate(0);
   }
 }
+
+.pokeball {
+  animation-name: moveInTop;
+  animation-duration: 1s;
+  animation-timing-function: ease-out;
+}
+
+.header {
+  animation-name: moveInRight;
+  animation-duration: 1s;
+  animation-timing-function: ease-in;
+
+}
+
