@@ -57,8 +57,10 @@ function PokemonCard({pokemon}) {
 
                         <span className="center align">ID: {ind + 1}</span>
                         <br/>
-                        <br />
-                        <button className="btn" style={{"backgroundColor": "red", "fontWeight" : "bold"}} onClick={() => openModal(ele)}>View Pokemon</button>
+                        <br/>
+                        <button className="btn" style={{"backgroundColor": "red", "fontWeight": "bold"}}
+                                onClick={() => openModal(ele)}>View Details
+                        </button>
                         {/*<span className="center align"><a*/}
                         {/*    href={`https://pokeapi.co/api/v2/pokemon/${ele.id}`}>Link</a></span>*/}
                     </div>
@@ -72,13 +74,22 @@ function PokemonCard({pokemon}) {
                 onRequestClose={closeModal}
                 style={customStyles}
             >
-                <div className="card-content">
+                <div className="card-content center-align">
                     <img src={pokeModal ? pokeModal.sprites.front_default : ''} alt="pokemon"/>
+                    <br/>
                     <a href="#"><span className="card-title center-align"
                                       style={{"fontSize": "1.75vw"}}>{pokeModal ? pokeModal.name : ''}</span>
                     </a>
+                    <div>
+                        <button className="btn-floating waves-effect waves-light red"
+                                onClick={() => saveFavoritePokemon(pokeModal)}>
+                            <i className="fas fa-heart"/>
+
+                        </button>
+                    </div>
+                    <hr/>
                     <br/>
-                    <span className="center align">Height: {pokeModal ? pokeModal.weight : ""}</span>
+                    <span className="center align">Height: {pokeModal ? pokeModal.height : ""}</span>
                     <br/>
                     <span className="center align">Weight: {pokeModal ? pokeModal.weight : ""}</span>
                     <br/>
