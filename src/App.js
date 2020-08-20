@@ -5,29 +5,51 @@ import PokemonCard from './components/PokemonCard';
 import Header from "./components/Header";
 import SearchForm from "./components/SearchForm";
 import PageButtons from "./components/PageButtons";
+import PopupCard from "./components/PopupCard";
 
 class App extends Component {
     constructor() {
         super();
         this.state = {
             isLoading: false,
+            userInput:'',
             pokemons: [],
+            noTouchPokemons: [],
             pokemonInfo: [],
             offset: 0,
-            load: 20,
-            pokemonSearch: []
+            initialLoad: 10,
+            loadMore: 20,
+            pokemonSearch: [],
+            timeOut: false,
+            pokemonUrl: "https://pokeapi.co/api/v2/pokemon/",
+            pokemonID: 0
         }
         this.handleShowMoreClick = this.handleShowMoreClick.bind(this)
         this.handleSearchChange = this.handleSearchChange.bind(this)
     }
 
     handleSearchChange(event) {
-        const {name, value} = event.target
-        this.setState({[name]: value})
+        let keyword = event.target.value
+        let keywordLower = keyword.toLowerCase()
+        this.setState({
+            pokemonSearch: keyword,
+        });
+
+
+        let pokemonHolder = this.state.pokemonInfo.filter(ele => ele.name === keywordLower);
+
+        if (pokemonHolder.length > 0) {
+            this.setState({
+                pokemonInfo: pokemonHolder
+            });
+        } else {
+            this.setState({pokemonInfo: this.state.noTouchPokemons});
+        }
     }
 
+
     loadNext() {
-        return this.state.offset + this.state.load;
+        return this.state.offset + this.state.initialLoad;
     }
 
     handleShowMoreClick(event) {
@@ -42,12 +64,13 @@ class App extends Component {
     }
 
     showNextSet() {
-        let url = "https://pokeapi.co/api/v2/pokemon?offset=" + this.state.offset + "&limit=" + this.state.load;
+        let url = "https://pokeapi.co/api/v2/pokemon?offset=" + this.state.offset + "&limit=" + this.state.initialLoad;
         this.setState({isLoading: true})
         fetch(url)
             .then(response => response.json())
             .then(data => {
-                console.log(data)
+                console.log(data.results[0].url)
+
                 if (data) {
                     this.setState({
                         pokemons: data.results
@@ -61,8 +84,10 @@ class App extends Component {
                                         let temp = this.state.pokemonInfo
                                         temp.push(data)
                                         this.setState({
-                                            pokemonInfo: temp
-                                        })
+                                            isLoading: false,
+                                            pokemonInfo: temp,
+                                            noTouchPokemons: temp
+                                        });
                                     }
                                 })
                                 .catch(console.log)
@@ -76,23 +101,21 @@ class App extends Component {
 
 
     render() {
+        // const pokemonList = this.state.pokemonInfo.map((pokemon, index) => {
+        //     return (<PokemonCard pokemon={pokemon} key={pokemon.id}/>);
+        // });
 
-
-        const {pokemonInfo} = this.state;
-        const pokemonList = pokemonInfo.map((pokemon) => {
-            return (<PokemonCard pokemon={pokemon} key={pokemon.id}/>);
-        });
 
         return (
             <div>
-                <Header />
+                <Header/>
                 <SearchForm handleSearchChange={this.handleSearchChange}
-                data={this.state}/>
-
-                <div className="container center-align" style={{"margin": "auto"}}>
-                    {pokemonList}
-                <PageButtons handleShowMoreClick={this.handleShowMoreClick}
-                data={this.state}/>
+                            data={this.state}/>
+                <PokemonCard pokemon={this.state.pokemonInfo} />
+                <div className="center-align" style={{"margin": "auto"}}>
+                    {/*{pokemonList}*/}
+                    <PageButtons handleShowMoreClick={this.handleShowMoreClick}
+                                 data={this.state}/>
                 </div>
             </div>
         )
@@ -100,3 +123,5 @@ class App extends Component {
 }
 
 export default App;
+// Full Pokemon Object
+// console.log(data.results[0].url)
