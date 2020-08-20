@@ -1,4 +1,16 @@
+<h1>Pokemon Application</h1>
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
+The application allows users to browse over 1000 Pokemon, beginning with the intial 151 Generation I Pokemon.
+
+Users can search Pokemon by name, save their favorites to local storage, and filter to view all favorites. 
+
+You can view the most recent production version of this application <a href="https://sheltered-stream-83795.herokuapp.com/" target="_blank">here.</a>
+
+
+
+
 
 <!-- ## Available Scripts
 
