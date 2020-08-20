@@ -12,12 +12,12 @@ class App extends Component {
         super();
         this.state = {
             isLoading: false,
-            userInput:'',
+            userInput: '',
             pokemons: [],
             noTouchPokemons: [],
             pokemonInfo: [],
             offset: 0,
-            initialLoad: 10,
+            initialLoad: 30,
             loadMore: 20,
             pokemonSearch: [],
             timeOut: false,
@@ -101,19 +101,16 @@ class App extends Component {
 
 
     render() {
-        // const pokemonList = this.state.pokemonInfo.map((pokemon, index) => {
-        //     return (<PokemonCard pokemon={pokemon} key={pokemon.id}/>);
-        // });
-
 
         return (
             <div>
                 <Header/>
                 <SearchForm handleSearchChange={this.handleSearchChange}
                             data={this.state}/>
-                <PokemonCard pokemon={this.state.pokemonInfo} />
+
+                    <PokemonCard pokemon={this.state.pokemonInfo}/>
+
                 <div className="center-align" style={{"margin": "auto"}}>
-                    {/*{pokemonList}*/}
                     <PageButtons handleShowMoreClick={this.handleShowMoreClick}
                                  data={this.state}/>
                 </div>

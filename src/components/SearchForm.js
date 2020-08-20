@@ -12,7 +12,7 @@ const SearchForm = (props) => {
                onChange={props.handleSearchChange}
                style={{
                    "display": "inline-block",
-                   "width" : "25vw",
+                   "width" : "50vw",
                    "backgroundColor" : "white",
                    "color": "black",
                    "paddingLeft" : "10px"
