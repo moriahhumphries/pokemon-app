@@ -12,11 +12,12 @@ class App extends Component {
         super();
         this.state = {
             isLoading: false,
+            userInput:'',
             pokemons: [],
             noTouchPokemons: [],
             pokemonInfo: [],
             offset: 0,
-            initialLoad: 151,
+            initialLoad: 10,
             loadMore: 20,
             pokemonSearch: [],
             timeOut: false,
@@ -28,8 +29,7 @@ class App extends Component {
     }
 
     handleSearchChange(event) {
-
-        let keyword = event.target.value;
+        let keyword = event.target.value
         let keywordLower = keyword.toLowerCase()
         this.setState({
             pokemonSearch: keyword,
