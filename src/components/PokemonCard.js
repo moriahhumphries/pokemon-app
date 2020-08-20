@@ -45,17 +45,19 @@ function PokemonCard({pokemon}) {
                     <div className="card-image">
                         <img src={ele.sprites.front_default} alt="pokemon"/>
 
-                        <button className="btn-floating halfway-fab waves-effect waves-light red" style={{"zIndex": "0"}}
+                        <button className="btn-floating halfway-fab waves-effect waves-light red"
+                                style={{"zIndex": "0"}}
                                 onClick={() => saveFavoritePokemon(ele)}>
                             <i className="fas fa-heart"/>
                         </button>
                         <hr/>
                     </div>
 
+
                     <div className="card-content center-align" style={{"padding": "5px"}}>
                         <span
                             className="card-title center-align"
-                            style={{"fontSize": "1.5em"}}>{ele.name}</span>
+                            style={{"fontSize": "1.25em", "marginTop": "10px"}}>{ele.name}</span>
 
                         <span className="center align">ID: {ind + 1}</span>
                         <br/>
@@ -65,7 +67,8 @@ function PokemonCard({pokemon}) {
                         {/*<span className="center align"><a*/}
                         {/*    href={`https://pokeapi.co/api/v2/pokemon/${ele.id}`}>Link</a></span>*/}
                     </div>
-                </div>)
+                </div>
+            )
         }
     )
     return (
@@ -76,10 +79,13 @@ function PokemonCard({pokemon}) {
                 style={customStyles}
             >
                 <div className="card-content center-align">
-                    <img style={{"width": "100%"}} src={pokeModal ? pokeModal.sprites.front_default : ''} alt="pokemon"/>
+                    <img style={{"width": "50%", "display": "inline-block"}} src={pokeModal ? pokeModal.sprites.front_default : ''}
+                         alt="pokemon"/>
+                    <img style={{"width": "50%", "display": "inline-block"}} src={pokeModal ? pokeModal.sprites.back_default : ''}
+                         alt="pokemon"/>
                     <br/>
                     <span className="card-title center-align"
-                                      style={{"fontSize": "1.5em"}}>{pokeModal ? pokeModal.name : ''}</span>
+                          style={{"fontSize": "1.5em"}}>{pokeModal ? pokeModal.name : ''}</span>
                     <div>
                         <button className="btn-floating waves-effect waves-light red"
                                 onClick={() => saveFavoritePokemon(pokeModal)}>
@@ -94,7 +100,9 @@ function PokemonCard({pokemon}) {
                     <span className="center align">Weight: {pokeModal ? pokeModal.weight : ""}</span>
                     <hr/>
                     <br/>
-                    <button className="btn" style={{"backgroundColor": "red", "fontWeight": "bold", "color": "white"}} onClick={closeModal}>Close</button>
+                    <button className="btn" style={{"backgroundColor": "red", "fontWeight": "bold", "color": "white"}}
+                            onClick={closeModal}>Close
+                    </button>
                 </div>
             </Modal>
 

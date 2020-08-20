@@ -17,7 +17,7 @@ class App extends Component {
             noTouchPokemons: [],
             pokemonInfo: [],
             offset: 0,
-            initialLoad: 30,
+            initialLoad: 20,
             loadMore: 20,
             pokemonSearch: [],
             timeOut: false,
@@ -107,8 +107,9 @@ class App extends Component {
                 <Header/>
                 <SearchForm handleSearchChange={this.handleSearchChange}
                             data={this.state}/>
-
+                <div className="container">
                     <PokemonCard pokemon={this.state.pokemonInfo}/>
+                </div>
 
                 <div className="center-align" style={{"margin": "auto"}}>
                     <PageButtons handleShowMoreClick={this.handleShowMoreClick}

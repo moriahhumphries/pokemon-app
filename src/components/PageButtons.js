@@ -8,7 +8,7 @@ const PageButtons = (props) => {
                 "display": "inline-block",
                 "backgroundColor": "red",
                 "fontWeight": "bold",
-                "marginRight": "10px",
+                "marginLeft": "5px",
                 "marginBottom": "20px"
             }}
                     type="button" className="btn" onClick={props.handleShowMoreClick}>Show More
