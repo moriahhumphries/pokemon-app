@@ -42,12 +42,12 @@ function PokemonCard({ pokemon }) {
                 <div className="card-image">
                     <img src={ele.sprites.front_default} alt="pokemon" />
 
-                        <button className="btn red" onClick={()=>saveFavoritePokemon(ele)}>
+                        <button className="btn-floating halfway-fab waves-effect waves-light red" onClick={()=>saveFavoritePokemon(ele)}>
                             <i className="fas fa-heart"/>
                         </button>
+                    <hr />
                 </div>
 
-                <button onClick={() => openModal(ele)}>View Pokemon</button>
                 <div className="card-content">
                     <a href="#">
                         <span
@@ -64,8 +64,9 @@ function PokemonCard({ pokemon }) {
                     <span className="center align">Weight: {ele.weight}</span>
                     <br />
                     <br />
-                    <span className="center align"><a
-                        href={`https://pokeapi.co/api/v2/pokemon/${ele.id}`}>Link</a></span>
+                    <button onClick={() => openModal(ele)}>View Pokemon</button>
+                    {/*<span className="center align"><a*/}
+                    {/*    href={`https://pokeapi.co/api/v2/pokemon/${ele.id}`}>Link</a></span>*/}
                 </div>
             </div>)
     }
