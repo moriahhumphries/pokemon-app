@@ -5,7 +5,6 @@ import PokemonCard from './components/PokemonCard';
 import Header from "./components/Header";
 import SearchForm from "./components/SearchForm";
 import PageButtons from "./components/PageButtons";
-import PopupCard from "./components/PopupCard";
 
 class App extends Component {
     constructor() {
@@ -76,6 +75,7 @@ class App extends Component {
                         pokemons: data.results
 
                     }, () => {
+                        // eslint-disable-next-line array-callback-return
                         this.state.pokemons.map(pokemon => {
                             fetch(pokemon.url)
                                 .then(response => response.json())
