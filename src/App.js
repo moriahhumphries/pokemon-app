@@ -30,7 +30,7 @@ function App() {
         let keywordLower = keyword.toLowerCase()
 
         // Takes user's input, and compares to each element in array
-        let pokemonHolder = pokemonInfo.filter(ele => ele.name === keywordLower);
+        let pokemonHolder = noTouchPokemons.filter(ele => ele.name.includes(keywordLower));
 
         // Checks that array is not empty
         if (pokemonHolder.length) {
