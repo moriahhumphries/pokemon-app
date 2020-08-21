@@ -18,7 +18,7 @@ const PageButtons = (props) => {
                         "height": "80px",
                         "width": "80px",
                         "borderRadius": "50%"
-                    }} type="button" className="btn">
+                    }} type="button" className="btn button">
                         <i className="fas fa-arrow-circle-up" style={{"fontSize": "50px", "marginTop": "24%"}}></i>
                     </button>
                 </label>

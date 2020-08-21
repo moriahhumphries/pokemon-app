@@ -52,7 +52,7 @@ function PokemonCard(props) {
     // Returns new array of pokemon cards
     let newPokemon = props.pokemonInfo.map((ele, ind) => {
             return (
-                <div className="card col s12 m2 l2 pokemon-card" style={{"margin": "20px"}} key={ind}>
+                <div className="card col s11 m2 l2 pokemon-card" style={{"margin": "20px", "padding": "0"}} key={ind}>
                     <div className="card-image">
                         <img src={ele.sprites.front_default} alt="pokemon"/>
 
@@ -65,7 +65,7 @@ function PokemonCard(props) {
                     </div>
 
 
-                    <div className="card-content center-align" style={{"padding": "5px"}}>
+                    <div className="card-content center-align" style={{"padding": "5px 0"}}>
                         <span
                             className="card-title center-align"
                             style={{
@@ -76,7 +76,7 @@ function PokemonCard(props) {
                         <span style={{"display": "none"}} className="center align">ID: {ind + 1}</span>
                         <br/>
                         <button className="btn button"
-                                style={{"backgroundColor": "red", "fontWeight": "bold", "marginTop": "5px"}}
+                                style={{"backgroundColor": "red", "fontWeight": "bold", "margin": "5px 0"}}
                                 onClick={() => openModal(ele)}>Details
                         </button>
                     </div>
@@ -121,7 +121,7 @@ function PokemonCard(props) {
                     <span
                         className="center align">Type: {pokeModal ? pokeModal.types[0].type.name : ""}</span>
                     <br/>
-                    <button className="btn" style={{"backgroundColor": "red", "fontWeight": "bold", "color": "white"}}
+                    <button className="btn" style={{"backgroundColor": "red", "fontWeight": "bold", "color": "white", "marginTop": "10px"}}
                             onClick={closeModal}>Close
                     </button>
                 </div>
