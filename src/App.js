@@ -7,14 +7,14 @@ import PageButtons from "./components/PageButtons";
 
 function App() {
 
-        const [userInput, setUserInput] = useState("")
-        const [pokemon, setPokemon] = useState([])
-        const [noTouchPokemons, setNoTouchPokemons] = useState([])
-        const [pokemonInfo, setPokemonInfo] = useState([])
-        const [offset, setOffset] = useState(0)
-        const [initialLoad, setInitialLoad] = useState(151)
-        const [pokemonSearch, setPokemonSearch] = useState([])
-        const [favoritePokemon, setFavoritePokemon] = useState([])
+    // Initializing state, refactored from class syntax to use Hooks
+    const [pokemon, setPokemon] = useState([])
+    // Original Pokemon Full Array
+    const [noTouchPokemons, setNoTouchPokemons] = useState([])
+    // Array with all information from Pokemon
+    const [pokemonInfo, setPokemonInfo] = useState([])
+    const [initialLoad, setInitialLoad] = useState(151)
+
 
     const buttonStyle = {
         "display": "inline-block",
@@ -24,80 +24,94 @@ function App() {
         "marginBottom": "20px"
     }
 
-
-    function handleSearchChange(event){
+    // Handler for search function, converts user input to lowercase
+    function handleSearchChange(event) {
         let keyword = event.target.value
         let keywordLower = keyword.toLowerCase()
-        setPokemonSearch(keyword)
 
+        // Takes user's input, and compares to each element in array
         let pokemonHolder = pokemonInfo.filter(ele => ele.name === keywordLower);
 
+        // Checks that array is not empty
         if (pokemonHolder.length) {
             setPokemonInfo(pokemonHolder);
         } else {
+            // Reset to original array
             setPokemonInfo(noTouchPokemons);
         }
     }
 
-    function clearFavorites(){
+    // Removes list of pokemon that user added to local storage favorites
+    function clearFavorites() {
         localStorage.clear()
         setPokemonInfo(noTouchPokemons)
     }
 
 
-    function setFavorites(whichButton){
-
-        // setPokemonInfo(localStorage.getItem('favoritePokmeon'))
+    function setFavorites() {
+        // Parse JSON string to turn into array
         let favoritePokemon = JSON.parse(localStorage.getItem('favoritePokemon'))
         let favPokeHolder = []
+        // Checks if name in favorites matches name in origin array
         favoritePokemon.forEach(ele => {
             pokemonInfo.forEach(ele2 => {
-                if(ele === ele2.name){
+                if (ele === ele2.name) {
                     favPokeHolder.push(ele2)
                 }
-            })
-        })
-
+            });
+        });
+        // Updates list with favorite
         setPokemonInfo(favPokeHolder)
     }
 
-    useEffect( () => {
+    // Return getOriginSet function
+    useEffect(() => {
         getOriginalSet()
 
-        },[])
+    }, []);
 
+
+    // Fetches Pokemon, sets data.
     async function getOriginalSet() {
-        const url = "https://pokeapi.co/api/v2/pokemon?offset=" + offset + "&limit=" + initialLoad;
+        const url = "https://pokeapi.co/api/v2/pokemon?limit=" + initialLoad;
+        // Awaiting response until fetch is complete
         let response = await fetch(url)
         let data = await response.json()
-        if(data.length) setPokemon(data.results)
+        // Checking if fetch has been completed
+        if (data.length) setPokemon(data.results)
+        // Sets pokemons and their URLs
         setPokemon(data.results)
-        const tempPokeData = data.results.map(async (ele) =>{
+        // Creates array of results from fetch
+        const tempPokeData = data.results.map(async (ele) => {
             response = await fetch(ele.url)
             return response.json()
-        })
+        });
+        // Awaiting results
         const newData = await Promise.all(tempPokeData)
+        // Setting results once resolved
         setPokemonInfo(newData)
         setNoTouchPokemons(newData)
 
     }
 
 
-        return (
-            <div className="center-align">
-                <Header/>
-                <SearchForm handleSearchChange={handleSearchChange} pokemonInfo={pokemonInfo}/>
-                <button onClick={setFavorites} style={buttonStyle} className="btn button">Show Favorites<i className="fas fa-heart" style={{"marginLeft": "10px"}}></i></button>
-                <button className="btn button" style={buttonStyle} onClick={clearFavorites}>Clear Favorites</button>
-                <div className="container">
-                    {pokemonInfo.length?<PokemonCard pokemon={pokemon} pokemonInfo={pokemonInfo}/>:<h2>Loading...</h2>}
-                </div>
-
-                <div className="center-align" style={{"margin": "auto"}}>
-                    <PageButtons/>
-                </div>
+    return (
+        <div className="center-align">
+            <Header/>
+            <SearchForm handleSearchChange={handleSearchChange} pokemonInfo={pokemonInfo}/>
+            <button onClick={setFavorites} style={buttonStyle} className="btn button">Show Favorites<i
+                className="fas fa-heart" style={{"marginLeft": "10px"}}></i></button>
+            <button className="btn button" style={buttonStyle} onClick={clearFavorites}>Clear Favorites</button>
+            <div className="container">
+                {pokemonInfo.length ? <PokemonCard pokemon={pokemon} pokemonInfo={pokemonInfo}/> :
+                    <h2 style={{"color": "white"}}>Loading...</h2>}
             </div>
-        );
+
+            <div className="center-align" style={{"margin": "auto"}}>
+                <PageButtons/>
+            </div>
+        </div>
+    );
 
 }
 

@@ -18,7 +18,6 @@ const SearchForm = (props) => {
                }}
         />
         <br />
-        {/*<h3 style={{"fontSize": "1.5em"}}>You Searched: {props.pokemonSearch}</h3>*/}
         <br/>
 
     </form>
