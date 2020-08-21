@@ -41,6 +41,7 @@ function App() {
         }
     }
 
+
     // Removes list of pokemon that user added to local storage favorites
     function clearFavorites() {
         localStorage.clear()
