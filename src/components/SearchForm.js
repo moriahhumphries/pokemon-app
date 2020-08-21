@@ -1,7 +1,6 @@
 import React from 'react';
 
 const SearchForm = (props) => {
-
     return (
 
     <form className="center-align">

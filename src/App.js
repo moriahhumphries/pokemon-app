@@ -43,7 +43,20 @@ function App() {
         const nextPokemon = loadNext();
         setOffset(nextPokemon)
     }
-
+    function setFavorites(){
+        // setPokemonInfo(localStorage.getItem('favoritePokmeon'))
+        let dog = JSON.parse(localStorage.getItem('favoritePokemon'))
+        let bingo = []
+        dog.forEach(ele => {
+            pokemonInfo.forEach(ele2 => {
+                if(ele === ele2.name){
+                     bingo.push(ele2)
+                }
+            })
+        })
+        console.log(bingo)
+        setPokemonInfo(bingo)
+    }
     useEffect(()=>{
         showNextSet()
     }, [offset])
@@ -75,7 +88,8 @@ function App() {
         return (
             <div className="center-align">
                 <Header/>
-                <SearchForm handleSearchChange={handleSearchChange} data={pokemonSearch}/>
+                <SearchForm handleSearchChange={handleSearchChange} pokemonInfo={pokemonInfo}/>
+                <button onClick={setFavorites}>Set Favorites</button>
                 <div className="container">
                     {pokemonInfo.length?<PokemonCard pokemon={pokemon} pokemonInfo={pokemonInfo}/>:<h2>No Pokemon Available</h2>}
                 </div>

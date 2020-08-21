@@ -20,6 +20,7 @@ const customStyles = {
 function PokemonCard(props) {
     const [modalIsOpen, setIsOpen] = useState(false)
     const [pokeModal, setPokeModal] = useState(null)
+    const [favChecker, setFavChecker] = useState(null)
     let [listOfFavorites, setListOfFavorites] = useState([])
     let openModal = (pokeModalFromLoop) => {
         setPokeModal(pokeModalFromLoop)
