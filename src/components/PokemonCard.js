@@ -20,7 +20,6 @@ const customStyles = {
 function PokemonCard(props) {
     const [modalIsOpen, setIsOpen] = useState(false)
     const [pokeModal, setPokeModal] = useState(null)
-    const [favChecker, setFavChecker] = useState(null)
     let [listOfFavorites, setListOfFavorites] = useState([])
     let openModal = (pokeModalFromLoop) => {
         setPokeModal(pokeModalFromLoop)
@@ -43,7 +42,7 @@ function PokemonCard(props) {
     let listOfAbilities = []
      let newPokemon = props.pokemonInfo.map((ele, ind) => {
             return (
-                    <div className="card col s12 m2 l2 pokemon-card" style={{"margin": "5px", "padding": "0"}} key={ind}>
+                    <div className="card col s12 m2 l2 pokemon-card" style={{"margin": "2%", "padding": "0"}} key={ind}>
                         <div className="card-image">
                             <img src={ele.sprites.front_default} alt="pokemon"/>
 
@@ -66,8 +65,6 @@ function PokemonCard(props) {
                             <button className="btn button" style={{"backgroundColor": "red", "fontWeight": "bold", "marginTop": "5px"}}
                                     onClick={() => openModal(ele)}>Details
                             </button>
-                            {/*<span className="center align"><a*/}
-                            {/*    href={`https://pokeapi.co/api/v2/pokemon/${ele.id}`}>Link</a></span>*/}
                         </div>
                     </div>
 
@@ -75,7 +72,7 @@ function PokemonCard(props) {
         }
     )
     return (
-        <div className="row align-center">
+        <div className="row align-center" style={{'background':'grey'}}>
             <Modal
                 isOpen={modalIsOpen}
                 onRequestClose={closeModal}
@@ -103,9 +100,11 @@ function PokemonCard(props) {
                     <hr/>
                     <span className="center align">Weight: {pokeModal ? pokeModal.weight : ""}</span>
                     <hr/>
-                    {pokeModal ? pokeModal.abilities.map((ele, ind) => <span key={ind}>{ele.ability.name} </span>):''}
-                    {/*<span*/}
-                    {/*    className="center align">Abilities: {pokeModal ? pokeModal.abilities[0].ability.name : ""}</span>*/}
+                    Abilities: {pokeModal ? pokeModal.abilities.map((ele, ind) => <span key={ind}>{ele.ability.name}, </span>):''}
+                    <hr/>
+                    <br/>
+                    <span
+                        className="center align">Type: {pokeModal ? pokeModal.types[0].type.name : ""}</span>
                     <br/>
                     <button className="btn" style={{"backgroundColor": "red", "fontWeight": "bold", "color": "white"}}
                             onClick={closeModal}>Close

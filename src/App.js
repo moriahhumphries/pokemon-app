@@ -1,4 +1,4 @@
-import React, {Component, useEffect, useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import './App.css';
 import PokemonCard from './components/PokemonCard';
 import Header from "./components/Header";
@@ -6,19 +6,15 @@ import SearchForm from "./components/SearchForm";
 import PageButtons from "./components/PageButtons";
 
 function App() {
-        const [isLoading, setIsLoading] = useState(false)
+
         const [userInput, setUserInput] = useState("")
         const [pokemon, setPokemon] = useState([])
         const [noTouchPokemons, setNoTouchPokemons] = useState([])
         const [pokemonInfo, setPokemonInfo] = useState([])
         const [offset, setOffset] = useState(0)
-        const [initialLoad, setInitialLoad] = useState(20)
-        const [loadMore, setLoadMore] = useState(20)
+        const [initialLoad, setInitialLoad] = useState(151)
         const [pokemonSearch, setPokemonSearch] = useState([])
-        const [timeOut, setTimeOut] = useState(false)
 
-        // this.handleShowMoreClick = this.handleShowMoreClick.bind(this)
-        // this.handleSearchChange = this.handleSearchChange.bind(this)
 
     function handleSearchChange(event){
         let keyword = event.target.value
@@ -45,42 +41,37 @@ function App() {
     }
     function setFavorites(){
         // setPokemonInfo(localStorage.getItem('favoritePokmeon'))
-        let dog = JSON.parse(localStorage.getItem('favoritePokemon'))
-        let bingo = []
-        dog.forEach(ele => {
+        let favoritePokemon = JSON.parse(localStorage.getItem('favoritePokemon'))
+        let favPokeHolder = []
+        favoritePokemon.forEach(ele => {
             pokemonInfo.forEach(ele2 => {
                 if(ele === ele2.name){
-                     bingo.push(ele2)
+                     favPokeHolder.push(ele2)
                 }
             })
         })
-        console.log(bingo)
-        setPokemonInfo(bingo)
+        setPokemonInfo(favPokeHolder)
     }
-    useEffect(()=>{
-        showNextSet()
-    }, [offset])
+    // useEffect(()=>{
+    //     showNextSet()
+    // }, [offset])
     useEffect( () => {
-        showNextSet()
+        getOriginalSet()
         },[])
 
-    async function showNextSet() {
-        let url = "https://pokeapi.co/api/v2/pokemon?offset=" + offset + "&limit=" + initialLoad;
-        setIsLoading( true)
+    async function getOriginalSet() {
+        const url = "https://pokeapi.co/api/v2/pokemon?offset=" + offset + "&limit=" + initialLoad;
         let response = await fetch(url)
-        setIsLoading(false)
         let data = await response.json()
         if(data.length) setPokemon(data.results)
         setPokemon(data.results)
-
-        let tempPokeData = []
-        data.results.forEach(async (ele) => {
+        const tempPokeData = data.results.map(async (ele) =>{
             response = await fetch(ele.url)
-            data = await response.json()
-            tempPokeData.push(data)
-            setPokemonInfo(tempPokeData)
-            setNoTouchPokemons(tempPokeData)
-        } )
+            return response.json()
+        })
+        const newData = await Promise.all(tempPokeData)
+        setPokemonInfo(newData)
+        setNoTouchPokemons(newData)
 
     }
 
