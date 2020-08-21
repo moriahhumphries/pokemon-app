@@ -2,7 +2,7 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-The application allows users to browse over 1000 Pokemon, beginning with the intial 151 Generation I Pokemon.
+The application allows users to browse the original 151 Generation I Pokemon.
 
 Pokemon information provided by <a href="https://pokeapi.co/docs/v2" target="_blank">PokeAPI.</a>
 
