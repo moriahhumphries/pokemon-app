@@ -23,7 +23,6 @@ function PokemonCard(props) {
     let [listOfFavorites, setListOfFavorites] = useState([])
     let openModal = (pokeModalFromLoop) => {
         setPokeModal(pokeModalFromLoop)
-        console.log(pokeModalFromLoop)
         setIsOpen(true);
     }
     let closeModal = () => {
@@ -40,6 +39,7 @@ function PokemonCard(props) {
     let saveFavoritePokemon = (favPokemon) => {
         setListOfFavorites([favPokemon.name, ...listOfFavorites])
     }
+    let listOfAbilities = []
      let newPokemon = props.pokemonInfo.map((ele, ind) => {
             return (
                     <div className="card col s12 m2 l2 pokemon-card" style={{"margin": "5px", "padding": "0"}} key={ind}>
@@ -58,7 +58,7 @@ function PokemonCard(props) {
                         <div className="card-content center-align" style={{"padding": "5px"}}>
                         <span
                             className="card-title center-align"
-                            style={{"fontSize": "1.25em", "marginTop": "10px"}}>{ele.name}</span>
+                            style={{"fontSize": "1.25em", "marginTop": "10px"}}>{ele.name.charAt(0).toUpperCase() + ele.name.substring(1)}</span>
 
                             <span className="center align">ID: {ind + 1}</span>
                             <br/>
@@ -74,7 +74,7 @@ function PokemonCard(props) {
         }
     )
     return (
-        <div className="row align-center" key={props.pokemon.id}>
+        <div className="row align-center">
             <Modal
                 isOpen={modalIsOpen}
                 onRequestClose={closeModal}
@@ -88,8 +88,7 @@ function PokemonCard(props) {
                          src={pokeModal ? pokeModal.sprites.back_default : ''}
                          alt="pokemon"/>
                     <br/>
-                    <span className="card-title center-align"
-                          style={{"fontSize": "1.5em"}}>{pokeModal ? pokeModal.name : ''}</span>
+
                     <div>
                         <button className="btn-floating waves-effect waves-light red"
                                 onClick={() => saveFavoritePokemon(pokeModal)}>
@@ -103,8 +102,9 @@ function PokemonCard(props) {
                     <hr/>
                     <span className="center align">Weight: {pokeModal ? pokeModal.weight : ""}</span>
                     <hr/>
-                    <span
-                        className="center align">Abilities: {pokeModal ? pokeModal.abilities[0].ability.name : ""}</span>
+                    {pokeModal ? pokeModal.abilities.map((ele, ind) => <span key={ind}>{ele.ability.name} </span>):''}
+                    {/*<span*/}
+                    {/*    className="center align">Abilities: {pokeModal ? pokeModal.abilities[0].ability.name : ""}</span>*/}
                     <br/>
                     <button className="btn" style={{"backgroundColor": "red", "fontWeight": "bold", "color": "white"}}
                             onClick={closeModal}>Close
