@@ -6,7 +6,7 @@ const SearchForm = (props) => {
 
     <form className="center-align">
         <input type="text"
-               value={props.data.pokemonSearch}
+               value={props.pokemonSearch}
                name="pokemonSearch"
                placeholder="Search Pokemon"
                onChange={props.handleSearchChange}

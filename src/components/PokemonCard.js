@@ -17,7 +17,7 @@ const customStyles = {
     }
 };
 
-function PokemonCard({pokemon}) {
+function PokemonCard(props) {
     const [modalIsOpen, setIsOpen] = useState(false)
     const [pokeModal, setPokeModal] = useState(null)
     let [listOfFavorites, setListOfFavorites] = useState([])
@@ -26,8 +26,8 @@ function PokemonCard({pokemon}) {
         console.log(pokeModalFromLoop)
         setIsOpen(true);
     }
-
     let closeModal = () => {
+
         setIsOpen(false);
     }
     useEffect(() => {
@@ -40,8 +40,7 @@ function PokemonCard({pokemon}) {
     let saveFavoritePokemon = (favPokemon) => {
         setListOfFavorites([favPokemon.name, ...listOfFavorites])
     }
-
-    let newPokemon = pokemon.map((ele, ind) => {
+     let newPokemon = props.pokemonInfo.map((ele, ind) => {
             return (
                     <div className="card col s12 m2 l2 pokemon-card" style={{"margin": "5px", "padding": "0"}} key={ind}>
                         <div className="card-image">
@@ -70,11 +69,12 @@ function PokemonCard({pokemon}) {
                             {/*    href={`https://pokeapi.co/api/v2/pokemon/${ele.id}`}>Link</a></span>*/}
                         </div>
                     </div>
-            )
+
+        )
         }
     )
     return (
-        <div className="row align-center" key={pokemon.id}>
+        <div className="row align-center" key={props.pokemon.id}>
             <Modal
                 isOpen={modalIsOpen}
                 onRequestClose={closeModal}

@@ -103,7 +103,6 @@ body {
   transition: all .4s;
 }
 
-
 .button:hover::after {
   transform: scaleX(1.4) scaleY(1.6);
   opacity: 0;
