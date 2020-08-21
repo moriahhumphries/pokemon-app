@@ -60,7 +60,7 @@ function PokemonCard(props) {
                             className="card-title center-align"
                             style={{"fontSize": "1.25em", "marginTop": "10px"}}>{ele.name.charAt(0).toUpperCase() + ele.name.substring(1)}</span>
 
-                            <span className="center align">ID: {ind + 1}</span>
+                            <span style={{"display": "none"}} className="center align">ID: {ind + 1}</span>
                             <br/>
                             <button className="btn button" style={{"backgroundColor": "red", "fontWeight": "bold", "marginTop": "5px"}}
                                     onClick={() => openModal(ele)}>Details
@@ -100,7 +100,7 @@ function PokemonCard(props) {
                     <hr/>
                     <span className="center align">Weight: {pokeModal ? pokeModal.weight : ""}</span>
                     <hr/>
-                    Abilities: {pokeModal ? pokeModal.abilities.map((ele, ind) => <span key={ind}>{ele.ability.name}, </span>):''}
+                    Abilities: {pokeModal ? pokeModal.abilities.map((ele, ind) => <span key={ind}>{ele.ability.name} <br/></span>):''}
                     <hr/>
                     <br/>
                     <span

@@ -14,6 +14,15 @@ function App() {
         const [offset, setOffset] = useState(0)
         const [initialLoad, setInitialLoad] = useState(151)
         const [pokemonSearch, setPokemonSearch] = useState([])
+        const [favoritePokemon, setFavoritePokemon] = useState([])
+
+    const buttonStyle = {
+        "display": "inline-block",
+        "backgroundColor": "red",
+        "fontWeight": "bold",
+        "marginLeft": "5px",
+        "marginBottom": "20px"
+    }
 
 
     function handleSearchChange(event){
@@ -30,33 +39,31 @@ function App() {
         }
     }
 
-
-    function loadNext() {
-        return offset + initialLoad
+    function clearFavorites(){
+        localStorage.clear()
+        setPokemonInfo(noTouchPokemons)
     }
 
-    function handleShowMoreClick(event) {
-        const nextPokemon = loadNext();
-        setOffset(nextPokemon)
-    }
-    function setFavorites(){
+
+    function setFavorites(whichButton){
+
         // setPokemonInfo(localStorage.getItem('favoritePokmeon'))
         let favoritePokemon = JSON.parse(localStorage.getItem('favoritePokemon'))
         let favPokeHolder = []
         favoritePokemon.forEach(ele => {
             pokemonInfo.forEach(ele2 => {
                 if(ele === ele2.name){
-                     favPokeHolder.push(ele2)
+                    favPokeHolder.push(ele2)
                 }
             })
         })
+
         setPokemonInfo(favPokeHolder)
     }
-    // useEffect(()=>{
-    //     showNextSet()
-    // }, [offset])
+
     useEffect( () => {
         getOriginalSet()
+
         },[])
 
     async function getOriginalSet() {
@@ -80,13 +87,14 @@ function App() {
             <div className="center-align">
                 <Header/>
                 <SearchForm handleSearchChange={handleSearchChange} pokemonInfo={pokemonInfo}/>
-                <button onClick={setFavorites}>Set Favorites</button>
+                <button onClick={setFavorites} style={buttonStyle} className="btn button">Show Favorites<i className="fas fa-heart" style={{"marginLeft": "10px"}}></i></button>
+                <button className="btn button" style={buttonStyle} onClick={clearFavorites}>Clear Favorites</button>
                 <div className="container">
-                    {pokemonInfo.length?<PokemonCard pokemon={pokemon} pokemonInfo={pokemonInfo}/>:<h2>No Pokemon Available</h2>}
+                    {pokemonInfo.length?<PokemonCard pokemon={pokemon} pokemonInfo={pokemonInfo}/>:<h2>Loading...</h2>}
                 </div>
 
                 <div className="center-align" style={{"margin": "auto"}}>
-                    <PageButtons handleShowMoreClick={handleShowMoreClick}/>
+                    <PageButtons/>
                 </div>
             </div>
         );
@@ -94,5 +102,4 @@ function App() {
 }
 
 export default App;
-// Full Pokemon Object
-// console.log(data.results[0].url)
+

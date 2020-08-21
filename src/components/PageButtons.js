@@ -5,15 +5,6 @@ const PageButtons = (props) => {
 
     return (
         <div>
-            <button style={{
-                "display": "inline-block",
-                "backgroundColor": "red",
-                "fontWeight": "bold",
-                "marginLeft": "5px",
-                "marginBottom": "20px"
-            }}
-                    type="button" className="btn button" onClick={props.handleShowMoreClick}>Show More
-            </button>
             <a href="#top">
                 <label>
                     <button style={{
