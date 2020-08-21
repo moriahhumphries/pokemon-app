@@ -1,116 +1,114 @@
 
 * {
-  font-family: 'Oxygen Mono', monospace;
-
+    font-family: 'Oxygen Mono', monospace;
 }
 
 body {
-  background-color: dodgerblue;
-  width: 100vw;
-  height: 100vh;
-
+    background-color: dodgerblue;
+    width: 100vw;
+    height: 100vh;
 }
 
-/*html {*/
-/*  width: 100vw;*/
-/*  height: 100vh;*/
-/*}*/
+.description {
+    font-family: 'Righteous', cursive;
+    color: white;
+    text-shadow: 1px 1px 2px #0b0b22;
+}
 
 
 @keyframes moveInTop {
-  0% {
-    opacity: 0;
-    transform: translateY(-70px);
-  }
+    0% {
+        opacity: 0;
+        transform: translateY(-70px);
+    }
 
-  50% {
-    transform: translateY(10px);
-  }
+    50% {
+        transform: translateY(10px);
+    }
 
-  80% {
-  transform: translateY(-40px);
-}
+    80% {
+        transform: translateY(-40px);
+    }
 
-  100% {
-    opacity: 1;
-    transform: translate(0);
-  }
+    100% {
+        opacity: 1;
+        transform: translate(0);
+    }
 }
 
 @keyframes moveInRight {
-  0% {
-    opacity: 0;
-    transform: translateX(100px);
-  }
+    0% {
+        opacity: 0;
+        transform: translateX(100px);
+    }
 
-  50% {
-    transform: translateX(-10px);
-  }
+    50% {
+        transform: translateX(-10px);
+    }
 
-  80% {
-    transform: translateX(10px);
-  }
+    80% {
+        transform: translateX(10px);
+    }
 
-  100% {
-    opacity: 1;
-    transform: translate(0);
-  }
+    100% {
+        opacity: 1;
+        transform: translate(0);
+    }
 }
 
 .pokeball {
-  animation-name: moveInTop;
-  animation-duration: 1s;
-  animation-timing-function: ease-out;
+    animation-name: moveInTop;
+    animation-duration: 1s;
+    animation-timing-function: ease-out;
 }
 
 .header {
-  animation-name: moveInRight;
-  animation-duration: 1s;
-  animation-timing-function: ease-in;
+    animation-name: moveInRight;
+    animation-duration: 1s;
+    animation-timing-function: ease-in;
 }
 
 .button:link, .button:visited {
-  /*text-transform: uppercase;*/
-  text-decoration: none;
-  padding: 15px 40px;
-  display: inline-block;
-  border-radius: 100px;
-  transition: all .2s;
-  position: relative;
+    /*text-transform: uppercase;*/
+    text-decoration: none;
+    padding: 15px 40px;
+    display: inline-block;
+    border-radius: 100px;
+    transition: all .2s;
+    position: relative;
 }
 
 .button:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 10px 20px rgba(0, 0, 0, .5);
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, .5);
 }
 
 .button:active {
-  transform: translateY(-1px);
-  box-shadow: 0 5px 5px rgba(0, 0, 0, .5);
+    transform: translateY(-1px);
+    box-shadow: 0 5px 5px rgba(0, 0, 0, .5);
 }
 
-
 .button::after {
-  content: "";
-  display: inline-block;
-  height: 100%;
-  width: 100%;
-  border-radius: 100px;
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: -1;
-  transition: all .4s;
+    content: "";
+    display: inline-block;
+    height: 100%;
+    width: 100%;
+    border-radius: 100px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    transition: all .4s;
 }
 
 .button:hover::after {
-  transform: scaleX(1.4) scaleY(1.6);
-  opacity: 0;
+    transform: scaleX(1.4) scaleY(1.6);
+    opacity: 0;
 }
 
 .pokemon-card:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 10px 20px rgba(0, 0, 0, .5);
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, .5);
 }
 
 

@@ -104,7 +104,7 @@ function App() {
             <button className="btn button" style={buttonStyle} onClick={clearFavorites}>Clear Favorites</button>
             <div className="container">
                 {pokemonInfo.length ? <PokemonCard pokemon={pokemon} pokemonInfo={pokemonInfo}/> :
-                    <h2 style={{"color": "white"}}>Loading...</h2>}
+                    <h2 className="description" style={{"color": "white"}}>Loading...</h2>}
             </div>
 
             <div className="center-align" style={{"margin": "auto"}}>

@@ -14,7 +14,7 @@ const customStyles = {
         marginRight: '-50%',
         transform: 'translate(-50%, -50%)',
         // width: "30vw",
-        border: "5px solid black",
+        border: "5px solid #facc02",
         zIndex: '1000'
     }
 };
@@ -52,7 +52,8 @@ function PokemonCard(props) {
     // Returns new array of pokemon cards
     let newPokemon = props.pokemonInfo.map((ele, ind) => {
             return (
-                <div className="card col s11 m2 l2 pokemon-card" style={{"margin": "20px", "padding": "0"}} key={ind}>
+                <div className="card col s11 m2 l2 pokemon-card"
+                     style={{"margin": "16px", "padding": "0", "border": " 5px solid #facc02"}} key={ind}>
                     <div className="card-image">
                         <img src={ele.sprites.front_default} alt="pokemon"/>
 
@@ -109,7 +110,6 @@ function PokemonCard(props) {
                         </button>
                     </div>
                     <hr/>
-                    <br/>
                     <span className="center align">Height: {pokeModal ? pokeModal.height : ""}</span>
                     <hr/>
                     <span className="center align">Weight: {pokeModal ? pokeModal.weight : ""}</span>
@@ -117,11 +117,15 @@ function PokemonCard(props) {
                     Abilities: {pokeModal ? pokeModal.abilities.map((ele, ind) => <span key={ind}>{ele.ability.name}
                     <br/></span>) : ''}
                     <hr/>
-                    <br/>
                     <span
                         className="center align">Type: {pokeModal ? pokeModal.types[0].type.name : ""}</span>
                     <br/>
-                    <button className="btn" style={{"backgroundColor": "red", "fontWeight": "bold", "color": "white", "marginTop": "10px"}}
+                    <button className="btn" style={{
+                        "backgroundColor": "red",
+                        "fontWeight": "bold",
+                        "color": "white",
+                        "marginTop": "10px"
+                    }}
                             onClick={closeModal}>Close
                     </button>
                 </div>
