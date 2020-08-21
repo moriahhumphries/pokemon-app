@@ -4,7 +4,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 The application allows users to browse over 1000 Pokemon, beginning with the intial 151 Generation I Pokemon.
 
-Pokemon information provided by <a href="https://pokeapi.co/docs/v2" target="_blank">PokeAPI</a>
+Pokemon information provided by <a href="https://pokeapi.co/docs/v2" target="_blank">PokeAPI.</a>
 
 Users can search Pokemon by name, save their favorites to local storage, and filter to view all favorites. 
 
