@@ -26,11 +26,11 @@ function App() {
 
     // Handler for search function, converts user input to lowercase
     function handleSearchChange(event) {
-        let keyword = event.target.value
-        let keywordLower = keyword.toLowerCase()
+        const keyword = event.target.value
+        const keywordLower = keyword.toLowerCase()
 
         // Takes user's input, and compares to each element in array
-        let pokemonHolder = noTouchPokemons.filter(ele => ele.name.includes(keywordLower));
+        const pokemonHolder = noTouchPokemons.filter(ele => ele.name.includes(keywordLower));
 
         // Checks that array is not empty
         if (pokemonHolder.length) {
@@ -51,8 +51,8 @@ function App() {
 
     function setFavorites() {
         // Parse JSON string to turn into array
-        let favoritePokemon = JSON.parse(localStorage.getItem('favoritePokemon'))
-        let favPokeHolder = []
+        const favoritePokemon = JSON.parse(localStorage.getItem('favoritePokemon'))
+        const favPokeHolder = []
         // Checks if name in favorites matches name in origin array
         favoritePokemon.forEach(ele => {
             pokemonInfo.forEach(ele2 => {
