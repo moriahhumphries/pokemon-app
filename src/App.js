@@ -4,6 +4,13 @@ import PokemonCard from './components/PokemonCard';
 import Header from "./components/Header";
 import SearchForm from "./components/SearchForm";
 import PageButtons from "./components/PageButtons";
+import {
+    BrowserRouter as Router,
+    Switch,
+    Route,
+    Link
+} from "react-router-dom";
+import RouterTest from "./components/RouterTest";
 
 function App() {
 
@@ -97,19 +104,52 @@ function App() {
 
 
     return (
-        <div className="center-align">
-            <Header/>
-            <SearchForm handleSearchChange={handleSearchChange} pokemonInfo={pokemonInfo}/>
-            <button onClick={setFavorites} style={buttonStyle} className="btn button">Show Favorites<i
-                className="fas fa-heart" style={{"marginLeft": "10px"}}></i></button>
-            <button className="btn button" style={buttonStyle} onClick={clearFavorites}>Clear Favorites</button>
-            <div className="container">
-                {pokemonInfo.length ? <PokemonCard pokemon={pokemon} pokemonInfo={pokemonInfo}/> :
-                    <h2 className="description" style={{"color": "white"}}>Loading...</h2>}
-            </div>
+        <div>
+            <Router>
+                <div>
+                    <nav>
+                        <ul>
+                            <li>
+                                <Link to="/router-test">Router</Link>
+                            </li>
+                            <li>
+                                <Link to="/about">About</Link>
+                            </li>
+                            <li>
+                                <Link to="/users">Users</Link>
+                            </li>
+                        </ul>
+                    </nav>
 
-            <div className="center-align" style={{"margin": "auto"}}>
-                <PageButtons/>
+                    {/* A <Switch> looks through its children <Route>s and
+            renders the first one that matches the current URL. */}
+                    <Switch>
+                        <Route path="/router-test">
+                            <RouterTest />
+                        {/*</Route>*/}
+                        {/*<Route path="/users">*/}
+                        {/*    <Users />*/}
+                        {/*</Route>*/}
+                        {/*<Route path="/">*/}
+                        {/*    <Home />*/}
+                        </Route>
+                    </Switch>
+                </div>
+            </Router>
+            <div className="center-align">
+                <Header/>
+                <SearchForm handleSearchChange={handleSearchChange} pokemonInfo={pokemonInfo}/>
+                <button onClick={setFavorites} style={buttonStyle} className="btn button">Show Favorites<i
+                    className="fas fa-heart" style={{"marginLeft": "10px"}}></i></button>
+                <button className="btn button" style={buttonStyle} onClick={clearFavorites}>Clear Favorites</button>
+                <div className="container">
+                    {pokemonInfo.length ? <PokemonCard pokemon={pokemon} pokemonInfo={pokemonInfo}/> :
+                        <h2 className="description" style={{"color": "white"}}>Loading...</h2>}
+                </div>
+
+                <div className="center-align" style={{"margin": "auto"}}>
+                    <PageButtons/>
+                </div>
             </div>
         </div>
     );
