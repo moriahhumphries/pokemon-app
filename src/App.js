@@ -15,20 +15,21 @@ import Header from "./components/Header";
 function App() {
 
     return (
-        <div>
-            <Navbar/>
-            <Header />
             <Router>
+                <Navbar/>
+                <Header />
                 <div>
                     <Switch>
                         <Route path="/router-test" exact component={RouterTest}/>
                         <Route path="/" exact component={AllPokemon}/>
                         <Route path="/pokemon" component={AllPokemon}/>
+                        <Route path="/pokemon/:id" component={PokemonDetail}/>
+
 
                     </Switch>
                 </div>
             </Router>
-        </div>
+
     );
 }
 

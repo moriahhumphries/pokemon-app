@@ -1,7 +1,7 @@
 import React from "react";
 import './../App.css';
 
-const PokemonDetail = () => {
+const PokemonDetail = ({pokemon}) => {
     return (
        <h1>Future Pokemon</h1>
     )
