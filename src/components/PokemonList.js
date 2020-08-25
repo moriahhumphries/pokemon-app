@@ -28,7 +28,7 @@ const PokemonList = () => {
             {items.map((item, ind) => (
                 <h1 key={ind}>
                     <Router>
-                        <Link to={`/single/${ind + 1}`} style={{"color": "white"}}>
+                        <Link to={`/list/${ind + 1}`} style={{"color": "white"}}>
                             <p>{item.name}</p>
                         </Link>
                     </Router>

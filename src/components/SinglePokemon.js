@@ -1,39 +1,30 @@
 import React, {useState, useEffect} from "react";
 import './../App.css';
-import {
-    BrowserRouter as Router,
-    Link
-} from "react-router-dom";
 
-const SinglePokemon = () => {
+
+const SinglePokemon = ({match}) => {
     useEffect(() => {
         getSinglePokemon();
+            console.log(match)
+        }
+    , []);
 
-
-    }, []);
-
-    const [items, setItems] = useState([])
+    const [item, setItem] = useState([])
 
     const getSinglePokemon = async () => {
         const data = await fetch(
-            "https://pokeapi.co/api/v2/pokemon?limit=151"
+            `https://pokeapi.co/api/v2/pokemon/${match.params.ind}`
         );
-        const items = await data.json();
-        console.log(items.results);
-        setItems(items.results);
+        const item = await data.json();
+        setItem(item);
+        console.log(item);
     }
+
 
     return (
         <div>
-            {items.map((item, ind) => (
-                <h1 key={ind}>
-                    <Router>
-                        <Link to={`/single/${ind + 1}`} style={{"color": "white"}}>
-                            <p>{item.name}</p>
-                        </Link>
-                    </Router>
-                </h1>
-            ))}
+            <h1>{item.name}</h1>
+            <h1>{item.id}</h1>
         </div>
     )
 }

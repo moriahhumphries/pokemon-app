@@ -33,7 +33,6 @@ function App() {
                         <Route path="/list/:ind" component={SinglePokemon}/>
                         <Route path="/list" exact component={PokemonList}/>
                         <Route path="/router-test" component={RouterTest}/>
-
                     </Switch>
                 </div>
              </Router>

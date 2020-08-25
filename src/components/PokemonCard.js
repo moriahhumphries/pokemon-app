@@ -1,6 +1,10 @@
 import React, {useState, useEffect} from "react";
 import Modal from 'react-modal'
 import './../App.css';
+import {
+    BrowserRouter as Router,
+    Link
+} from "react-router-dom";
 
 
 Modal.setAppElement('#root')
@@ -78,11 +82,16 @@ function PokemonCard(props) {
                         <br/>
                         <button className="btn button"
                                 style={{"backgroundColor": "red", "fontWeight": "bold", "margin": "5px 0"}}
-                                onClick={() => openModal(ele)}>Details
+                                onClick={() => openModal(ele)}>Quick View
                         </button>
-                        <button className="btn button"
-                                style={{"backgroundColor": "red", "fontWeight": "bold", "margin": "5px 0"}}>New Page
-                        </button>
+                        <Router>
+                            <Link to={`/list/${ind + 1}`} style={{"color": "white"}}>
+                                <button className="btn button"
+                                        style={{"backgroundColor": "red", "fontWeight": "bold", "margin": "5px 0"}}>New Page
+                                </button>
+                            </Link>
+                        </Router>
+
                     </div>
                 </div>
 
