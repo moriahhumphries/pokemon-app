@@ -5,7 +5,7 @@ import {
     Link
 } from "react-router-dom";
 
-const PokemonDetail = () => {
+const PokemonList = () => {
     useEffect(() => {
         getSinglePokemon();
 
@@ -38,4 +38,4 @@ const PokemonDetail = () => {
     )
 }
 
-export default PokemonDetail;
+export default PokemonList;
