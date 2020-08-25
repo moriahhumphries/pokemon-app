@@ -13,15 +13,9 @@ const Navbar = () => {
         <Router>
             <nav>
                 <ul>
-                    <Link to="/router-test">
-                        <li>Router</li>
-                    </Link>
-                    <Link to="/">
-                        <li>Home</li>
-                    </Link>
-                    <Link to="/pokemon">
-                        <li>All Pokemon</li>
-                    </Link>
+                    <li><Link to="/router-test">Router</Link></li>
+                    <li><Link to="/">Home</Link></li>
+                    <li><Link to="/pokemon">All Pokemon</Link></li>
                 </ul>
             </nav>
         </Router>
