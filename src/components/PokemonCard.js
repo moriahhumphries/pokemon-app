@@ -80,6 +80,9 @@ function PokemonCard(props) {
                                 style={{"backgroundColor": "red", "fontWeight": "bold", "margin": "5px 0"}}
                                 onClick={() => openModal(ele)}>Details
                         </button>
+                        <button className="btn button"
+                                style={{"backgroundColor": "red", "fontWeight": "bold", "margin": "5px 0"}}>New Page
+                        </button>
                     </div>
                 </div>
 

@@ -1,9 +1,30 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import './../App.css';
 
-const PokemonDetail = ({pokemon}) => {
+const PokemonDetail = () => {
+    useEffect(() => {
+        getSinglePokemon();
+
+
+    }, []);
+
+    const [items, setItems] = useState([])
+
+    const getSinglePokemon = async () => {
+        const data = await fetch(
+            "https://pokeapi.co/api/v2/pokemon"
+        );
+        const items = await data.json();
+        console.log(items.results);
+        setItems(items.results);
+    }
+
     return (
-       <h1>Future Pokemon</h1>
+       <div>
+           {items.map(item => (
+           <h1 key={item.id}>{item.name}</h1>
+       ))}
+       </div>
     )
 }
 

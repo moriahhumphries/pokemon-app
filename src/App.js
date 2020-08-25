@@ -6,11 +6,10 @@ import {
     Route,
     Link
 } from "react-router-dom";
-import RouterTest from "./components/RouterTest";
-import Navbar from "./components/Navbar";
 import PokemonDetail from "./components/PokemonDetail";
 import AllPokemon from "./components/AllPokemon";
 import Header from "./components/Header";
+import RouterTest from "./components/RouterTest";
 
 function App() {
 
@@ -20,18 +19,20 @@ function App() {
                 {/*<Navbar/>*/}
                  <nav>
                      <ul>
-                         <li><Link to="/router-test">Router</Link></li>
                          <li><Link to="/">Home</Link></li>
                          <li><Link to="/pokemon">All Pokemon</Link></li>
+                         <li><Link to="/single">Single</Link></li>
+                         <li><Link to="/router-test">Test</Link></li>
                      </ul>
                  </nav>
                 <Header />
                 <div>
                     <Switch>
                         <Route path="/" exact component={AllPokemon}/>
-                        <Route path="/router-test" exact component={RouterTest}/>
-                        <Route path="/pokemon" component={AllPokemon}/>
-                        <Route path="/pokemon/:id" component={PokemonDetail}/>
+                        <Route path="/pokemon" exact component={AllPokemon}/>
+                        <Route path="/single" component={PokemonDetail}/>
+                        <Route path="/router-test" component={RouterTest}/>
+
                     </Switch>
                 </div>
              </Router>
